@@ -1,4 +1,4 @@
-<div class="recipe-detail">
+<div class="container fluid">
   <h2>{{ recipe.nombre }}</h2>
   <img
     class="recipe-detail-img"
@@ -8,6 +8,7 @@
   <p><strong>Porciones:</strong> {{ recipe.porciones }}</p>
   <p><strong>Tiempo:</strong> {{ recipe.tiempo_minutos }} min</p>
   <h3>Ingredientes</h3>
+  <h6>Ingrediente más usado: {{ getIngredienteMasUsado() }}</h6>
   <app-ingredient-list
     [ingredients]="recipe.ingredientes"
   ></app-ingredient-list>
@@ -20,4 +21,6 @@
     </li>
     }
   </ol>
+  <button class="btn btn-secondary" routerLink="/recipe">Regresar</button>
 </div>
+

@@ -1,35 +1,32 @@
-<div>
-  <div>
-    @if (selected) {
-    <div *ngIf="selected">
-      <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+
+  
+    
+<div class = "container-fluid">
+  <div class = "row">
+    @for(recipe of recipes; track recipe.id){
+    
+    <div class="card p-2" style="width: 15rem; height: 30rem; margin: 3rem;">
+      <img
+        class="card-img-top recipe-img"
+        [src]="recipe.imagen"
+        alt="{{ recipe.imagen }}" style="height: 10rem; width: 10rem; align-self: center;"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.nombre }}</h5>
+        <p class = "card-text">Porciones: {{ recipe.porciones }}</p>
+        <p class = "card-text">Ingredientes: {{ recipe.ingredientes.length }}</p>
+        <button class="btn btn-primary" routerLink="/recipe/{{ recipe.id }}">Ver detalles</button>
+      </div>
     </div>
+    
     }
-    <table>
-      <thead>
-        <tr>
-          <th>Receta</th>
-          <th>Imagen</th>
-          <th>Porciones</th>
-          <th>Tiempo</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(recipe of recipes; track recipe.id){
-        <tr (click)="onSelect(recipe)">
-          <td>{{ recipe.nombre }}</td>
-          <td>
-            <img
-              class="recipe-img"
-              [src]="recipe.imagen"
-              alt="{{ recipe.imagen }}"
-            />
-          </td>
-          <td>{{ recipe.porciones }}</td>
-          <td>{{ recipe.tiempo_minutos }} min</td>
-        </tr>
-        }
-      </tbody>
-    </table>
   </div>
 </div>
+
+
+
+
+    
+    
+    
+    

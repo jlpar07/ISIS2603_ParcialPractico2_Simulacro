@@ -20,6 +20,19 @@ export class RecipeDetailComponent implements OnInit {
       this.recipe = recipe;
     });
   }
+
+  getIngredienteMasUsado(){
+    var mayor = 0;
+    var ingredienteMasUsado = "";
+    for(var ingrediente of this.recipe.ingredientes){
+      if(Number(ingrediente.cantidad) > mayor){
+        mayor = Number(ingrediente.cantidad);
+        ingredienteMasUsado = ingrediente.nombre;
+      }
+    }
+    return ingredienteMasUsado;
+  }
+  
   ngOnInit(): void {
     if(this.recipe == undefined){
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id')!);
