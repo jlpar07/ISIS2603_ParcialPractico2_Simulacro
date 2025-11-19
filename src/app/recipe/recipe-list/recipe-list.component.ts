@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../Recipe';
-import { recipeData } from '../recipeData';
-import { RecipeServiceService } from '../recipe-service.service';
+import { RecipeServiceService } from '../recipe-service.service';  //traer el servicio para obtener recetas
+
 
 @Component({
   selector: 'app-recipe-list',
@@ -14,24 +14,20 @@ export class RecipeListComponent implements OnInit {
   selected: Boolean = false;
   selectedRecipe!: Recipe;
 
-  constructor(private RecipeService: RecipeServiceService) {}
+  constructor(private recipeService: RecipeServiceService) {}
 
   getRecipesList(){
-    this.RecipeService.getRecipes().subscribe((recipes) => {
+    this.recipeService.getRecipes().subscribe((recipes) => {
       this.recipes = recipes;
     });
   }
 
-  getIngredientes(){
-    
-  }
-
-  ngOnInit() {
+  ngOnInit() {   //metodo que se ejecuta al iniciar el componente
     this.getRecipesList();
   }
 
-  onSelect(recipe: Recipe) {
-    this.selected = true;
+  onSelect(recipe: Recipe) { //metodo para seleccionar una receta
     this.selectedRecipe = recipe;
+    this.selected = true;
   }
 }

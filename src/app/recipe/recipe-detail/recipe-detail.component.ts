@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recipe } from '../Recipe';
 import { RecipeServiceService } from '../recipe-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Recipe } from '../Recipe';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,13 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './recipe-detail.component.css',
 })
 export class RecipeDetailComponent implements OnInit {
-  id !: number;
+  id!: number;
   @Input() recipe!: Recipe;
 
-  constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeServiceService) {}
+  constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeServiceService) {}   //siempre pal detail usar activated route para obtener el id de la ruta
 
-  getRecipe(){
-    this.recipeService.getRecipeDetail(this.id).subscribe((recipe) => {
+  getRecipeById() {
+    this.recipeService.getRecipesById(this.id).subscribe((recipe) => {
       this.recipe = recipe;
     });
   }
@@ -32,12 +33,13 @@ export class RecipeDetailComponent implements OnInit {
     }
     return ingredienteMasUsado;
   }
-  
-  ngOnInit(): void {
+
+
+  ngOnInit(): void{    //esta vaina tal cual ponerla
     if(this.recipe == undefined){
       this.id = Number(this.activatedRoute.snapshot.paramMap.get('id')!);
       if(this.id){
-          this.getRecipe();
+          this.getRecipeById();
       }
     }
   }

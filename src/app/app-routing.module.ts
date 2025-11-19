@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
 
 const routes: Routes = [
-  { path: '', component: RecipeListComponent },
-  {path: '', loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule)}
+  {path: '', redirectTo: '/recipe', pathMatch: 'full' },  //ruta por defecto
+  { path: 'recipe', component: RecipeListComponent },
+  { path: 'recipe/:id', component: RecipeDetailComponent }
+
 ];
 
 @NgModule({
@@ -12,3 +15,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

@@ -15,7 +15,8 @@
         <h5 class="card-title">{{ recipe.nombre }}</h5>
         <p class = "card-text">Porciones: {{ recipe.porciones }}</p>
         <p class = "card-text">Ingredientes: {{ recipe.ingredientes.length }}</p>
-        <button class="btn btn-primary" routerLink="/recipe/{{ recipe.id }}">Ver detalles</button>
+        <a class="btn btn-primary" href="/recipe/{{ recipe.id }}">Ver detalles</a>    <!--usar routerlink puede dar error al compilar, mejor usar href-->
+        
       </div>
     </div>
     
